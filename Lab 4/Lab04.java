@@ -1,87 +1,99 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
 
 public class Lab04 {
-    static int accountNumber;
-    static String accountHolderName;
-    static double accountBalance;
-    static ArrayList<String> transactions = new ArrayList<String>();
+    static int acc_no = 22122015;
     
-    public static void initializeCustomer(int number, String name, double balance) {
-        accountNumber = number;
-        accountHolderName = name;
-        accountBalance = balance;
-    }
+    static String hname = "Ladli Bhagat";
+    static double bal = 76000.00;
     
-    public static void deposit(double amount) {
-        accountBalance += amount;
-        transactions.add("Deposit of " + amount + " made.");
-    }
+
+    // static void init(){
+    //     System.out.println("Welcome "+hname+" your account available bal: "+bal);
+        
+    // }
     
-    public static void withdraw(double amount) {
-        if (accountBalance >= amount) {
-            accountBalance -= amount;
-            transactions.add("Withdrawal of " + amount + " made.");
-        } else {
-            System.out.println("Insufficient account balance.");
+    static String[] trans(String [] trans,int count){
+        System.out.println("Transction details are: ");
+        for (int i = 0; i < count; i++) {
+            System.out.println(trans[i]);
         }
+        return trans;
     }
-    
-    public static void printTransactions() {
-        System.out.println("List of Transactions:");
-        for (String transaction : transactions) {
-            System.out.println(transaction);
-        }
+    static double deposit(double bal,int count,String []trans){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the amount to deposit the money: ");
+
+        double temp = sc.nextDouble();
+        double prev= bal;
+        bal += temp;
+        trans[count]="Money deposit : "+temp+" Time "+java.time.LocalTime.now()+" Previous bal: "+prev+" New bal"+bal;
+        // count++;
+
+        return bal;
     }
-    
-    public static void printAccountSummary() {
-        System.out.println("Account Number: " + accountNumber);
-        System.out.println("Account Holder Name: " + accountHolderName);
-        System.out.println("Account Balance: " + accountBalance);
+    static double with(double bal,int count,String[] trans){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the amount to withdraw the money: ");
+        double temp = sc.nextDouble();
+        double prev= bal;
+        bal -= temp;
+        trans[count]="Money Withdraw : "+temp+" Time "+java.time.LocalTime.now()+" Previous bal: "+prev+" New bal"+bal;
+        // count++;
+        return bal;
+
     }
-    
-    public static void displayMenu() {
-        System.out.println("1. Deposit money");
-        System.out.println("2. Withdraw money");
-        System.out.println("3. Print transactions");
-        System.out.println("4. Print account summary");
-        System.out.println("5. Exit");
+    static void summary(){
+        System.out.println("welcome "+hname);
+        System.out.println("Current Login Time: "+java.time.LocalTime.now());
+        System.out.println(" Your Account number is "+acc_no);
+        System.out.println("Yout total account balance is :"+bal);
+
     }
-    
-    public static int getMenuChoice(Scanner input) {
-        System.out.print("Enter choice (1-5): ");
-        return input.nextInt();
-    }
-    
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        
-        // Initialize customer
-        initializeCustomer(12345, "John Smith", 0);
-        
-        while (true) {
-            displayMenu();
-            int choice = getMenuChoice(input);
+        boolean flag = true;
+        Scanner sc = new Scanner(System.in);
+        String [] trans = new String[200];
+        int count=0;
+
+        do {
             
-            if (choice == 1) {
-                System.out.print("Enter amount to deposit: ");
-                double amount = input.nextDouble();
-                deposit(amount);
-            } else if (choice == 2) {
-                System.out.print("Enter amount to withdraw: ");
-                double amount = input.nextDouble();
-                withdraw(amount);
-            } else if (choice == 3) {
-                printTransactions();
-            } else if (choice == 4) {
-                printAccountSummary();
-            } else if (choice == 5) {
-                break;
-            } else {
-                System.out.println("Invalid choice. Please try again.");
-            }
-        }
+        System.out.println("************* MENU ***************");
+        // System.out.println("## 1 . Initialize the money");
+        System.out.println("## 2. Deposit Money ");
+        System.out.println("## 3. Withdraw Money");
+        System.out.println("## 4. Print All the transctions. ");
+        System.out.println("## 5. Print Account Summary. ");
+        System.out.println("## 6. Logout.");
         
-        input.close();
+        int choice = Integer.parseInt(sc.nextLine());
+        switch (choice) {
+            // case 1:
+            //     init();
+            //     break;
+            case 2:
+                bal=deposit(bal,count,trans);
+                count++;
+                break;
+            case 3:
+                bal=with(bal,count,trans);
+                count++;
+                break;
+            case 4:
+                trans=trans(trans,count);
+
+                break;
+            case 5:
+                summary();
+                break;
+            case 6:
+                System.out.println("Thanks for using our bank.");
+                flag=false;
+                break;
+        }
+        } while (flag);
+        
     }
 }
