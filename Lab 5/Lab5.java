@@ -1,83 +1,82 @@
-import java.util.*;
-class lab5{
+import java.util.Scanner;
 
-    static String encrypt(String s){
-        String temp="";
-        for(int i=0;i<s.length();i++){
-            char ch=s.charAt(i);
-            if(ch==' '){
-                temp=temp+ch;
-
-            }
-            else{
-                int a=(int)ch;
-                //System.out.println(a);
-                if(a<=67){
-                    a=(a-2)+25;
-                }
-                else {a=a-3;}
-                temp=temp + (char)(a);
-            }
-
-           
-    }
-
-    return temp;}
-
-    static String decrypt(String s){
-        String temp="";
-        for(int i=0;i<s.length();i++){
-            char ch=s.charAt(i);
-            if(ch==' '){
-                temp=temp+ch;
-
-            }
-            else{
-                int a=(int)ch;
-                //System.out.println(a);
-                if(a>=88){
-                    a=a-23;
-                }
-                else {a=a+3;}
-                temp=temp + (char)(a);
-            }
-
-           
-    }
-
-    return temp;}
-
-
-
+public class Lab5 {
 
     public static void main(String[] args) {
-         Scanner sc=new Scanner(System.in);
-        int n;
-        boolean flag=false;
-        do{
-            System.out.println("1.Encrypt a message");
-            System.out.println("2.Decrypt a message");
-            System.out.print("Enter your choice: ");
-            n=Integer.parseInt(sc.nextLine());
-            if (n==1){
-                flag=true;
-                System.out.println("Enter a string: ");
-                String s=sc.nextLine();
-                String str= encrypt(s);
-                System.out.println(str);
+        Scanner scanner = new Scanner(System.in);
 
+        while (true) {
+            System.out.println("Choose an option:");
+            System.out.println("1. Encrypt message");
+            System.out.println("2. Decrypt message");
+            System.out.println("3. Exit");
+
+            int option = scanner.nextInt();
+
+            if (option == 1) {
+                System.out.print("Enter message to encrypt: ");
+                scanner.nextLine();
+                String message = scanner.nextLine().toUpperCase();
+                String encryptedMessage = encrypt(message);
+                System.out.println("Encrypted message: " + encryptedMessage);
+            } else if (option == 2) {
+                System.out.print("Enter message to decrypt: ");
+                scanner.nextLine();
+                String message = scanner.nextLine().toUpperCase();
+                String decryptedMessage = decrypt(message);
+                System.out.println("Decrypted message: " + decryptedMessage);
+            } else if (option == 3) {
+                break;
+            } else {
+                System.out.println("Invalid option. Please choose again.");
             }
-            if(n==2){
-                    flag=true;
-                    System.out.println("Enter a string: ");
-                    String s=sc.nextLine();
-                    String str= decrypt(s);
-                    System.out.println(str);
-    
+        }
+    }
+
+    public static String encrypt(String message) {
+        String plain = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String cypher = "XYZABCDEFGHIJKLMNOPQRSTUVW";
+        StringBuilder encryptedMessage = new StringBuilder();
+
+        for (int i = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+            int index = plain.indexOf(Character.toUpperCase(c));
+            if (index >= 0) {
+                char encryptedChar = cypher.charAt(index);
+                if (Character.isLowerCase(c)) {
+                    encryptedMessage.append(Character.toUpperCase(encryptedChar));
+                } else {
+                    encryptedMessage.append(encryptedChar);
                 }
-            else flag=false;
+            } else {
+                encryptedMessage.append(c);
+            }
+        }
 
+        return encryptedMessage.toString();
+    }
 
-        
-    }while(flag ==true);
-}}
+    public static String decrypt(String message) {
+        String plain = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String cypher = "XYZABCDEFGHIJKLMNOPQRSTUVW";
+        StringBuilder decryptedMessage = new StringBuilder();
+
+        for (int i = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+            int index = cypher.indexOf(Character.toUpperCase(c));
+            if (index >= 0) {
+                char decryptedChar = plain.charAt(index);
+                if (Character.isLowerCase(c)) {
+                    decryptedMessage.append(Character.toUpperCase(decryptedChar));
+                } else {
+                    decryptedMessage.append(decryptedChar);
+                }
+            } else {
+                decryptedMessage.append(c);
+            }
+        }
+
+        return decryptedMessage.toString();
+    }
+
+}
