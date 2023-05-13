@@ -9,12 +9,14 @@ Present your results in the appropriate format and write the results in a file.
 **Output**
 
 PS C:\Users\ladli\OneDrive\Desktop\Java\Lab work\22122015-MDS273L-JAVA\Lab 7> java .\lab7.java
+
 ----------------------------------------TOTAL----------------------------------------
 |PARAMETER    |MEAN         |MEDIAN       |MODE         |MAX          |MIN          |
 |SEPAL LENGTH |5.8433347    |5.8          |5.0          |7.9          |4.3          |
 |SEPAL WIDTH  |3.054        |3.0          |3.0          |4.4          |2.0          |
 |PETAL LENGTH |3.7586665    |4.3500004    |1.5          |6.9          |1.0          |
 |PETAL WIDTH  |1.1986669    |1.3          |0.2          |2.5          |0.1          |
+
 
 ----------------------------------------SETOSA----------------------------------------
 |PARAMETER    |MEAN         |MEDIAN       |MODE         |MAX          |MIN          |
@@ -23,12 +25,14 @@ PS C:\Users\ladli\OneDrive\Desktop\Java\Lab work\22122015-MDS273L-JAVA\Lab 7> ja
 |PETAL LENGTH |1.464        |1.5          |1.5          |1.9          |1.0          |
 |PETAL WIDTH  |0.24399997   |0.2          |0.2          |0.6          |0.1          |
 
+
 ----------------------------------------VERSICOLOR----------------------------------------
 |PARAMETER    |MEAN         |MEDIAN       |MODE         |MAX          |MIN          |
 |SEPAL LENGTH |5.936002     |5.9          |5.5          |7.0          |4.9          |
 |SEPAL WIDTH  |2.77         |2.8          |3.0          |3.4          |2.0          |
 |PETAL LENGTH |4.26         |4.3500004    |4.5          |5.1          |3.0          |
 |PETAL WIDTH  |1.3259999    |1.3          |1.3          |1.8          |1.0          |
+
 
 ----------------------------------------VIRGINICA----------------------------------------
 |PARAMETER    |MEAN         |MEDIAN       |MODE         |MAX          |MIN          |
